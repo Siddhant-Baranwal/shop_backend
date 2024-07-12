@@ -32,6 +32,15 @@ mongoose.connect(process.env.MONGO_URI, {
 
 app.post('/order', async (req, res) => {
   try{
+
+    const {transaction_id} = req.body;
+    const exists = await Order.findOne({transaction_id});
+    if(exists){
+      return res.status(400).json({
+        success: false,
+      })
+    }
+
     await Order.create(req.body);
     res.status(200).json({
       success: true,
