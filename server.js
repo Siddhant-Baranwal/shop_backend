@@ -20,7 +20,8 @@ const schema = new mongoose.Schema({
   name: String,
   phone: Number, 
   item: String,
-  transaction_id : Number
+  arrival: String,
+  transaction_id : Number,
 })
 
 const Order = mongoose.model('OurOrders', schema);
